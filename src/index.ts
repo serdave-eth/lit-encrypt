@@ -51,7 +51,7 @@ n();
 //This is a lit action that checks an on-chain access control condition 
 //(in this example, the user calling this has a specific wallet address) 
 //and if it passes, signs the Livepeer JWT
-const genActionSource = () => {
+/*const genActionSource = () => {
     return `var w = e => {
     try {
         return typeof window !== "undefined" && "btoa" in window 
@@ -168,7 +168,7 @@ var S = async () => {
 };
 
 S();`
-}
+}*/
 
 
 
@@ -492,7 +492,7 @@ const main = async () => {
     const wallet = genWallet();
     const chain = 'ethereum';
     // lit action will allow anyone to decrypt this api key with a valid authSig
-    const accessControlConditions = [
+    /*const accessControlConditions = [
         {
             contractAddress: '',
             standardContractType: '',
@@ -504,7 +504,21 @@ const main = async () => {
                 value: '0',
             },
         },
-    ];
+    ];*/
+
+    const accessControlConditions = [
+        {
+          contractAddress: "",
+          standardContractType: "",
+          chain,
+          method: "eth_getBalance",
+          parameters: [":currentActionId", "latest"],
+          returnValueTest: {
+            comparator: "=",
+            value: 'Qmd3RiHeUTgYDWU57wAEZEFcXvMcHkkJ9qZwxE1y8GoM6H',
+          },
+        },
+      ];
     
 
     await client.connect();
@@ -516,7 +530,7 @@ const main = async () => {
     const { ciphertext, dataToEncryptHash } = await encryptString(
         {
             accessControlConditions,
-            dataToEncrypt: key,
+            dataToEncrypt: "hello world",
         },
         client
     );
@@ -591,7 +605,8 @@ const main = async () => {
     
       const res = await client.executeJs({
         sessionSigs: sessionForDecryption,
-        code: genActionSource(),
+        //code: genActionSource(),
+        ipfsId: "Qmd3RiHeUTgYDWU57wAEZEFcXvMcHkkJ9qZwxE1y8GoM6H",
         jsParams: {
             accessControlConditions,
             ciphertext,
