@@ -9,7 +9,7 @@ import { SupportedAlgorithm } from "ethers/lib/utils.js";
 import * as siwe from "siwe";
 
 const url = `<your http endpoint for api-key usage>`;
-const key = 'LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JR0hBZ0VBTUJNR0J5cUdTTTQ5QWdFR0NDcUdTTTQ5QXdFSEJHMHdhd0lCQVFRZ1lqc2MxMVJ0cU05WUxZZzcKWnpxS1dXdzNvZ3pZRFZFTWJqVVVvdzZxSEhXaFJBTkNBQVNyQTlqSWZUNkVuQW9JT0tOTjdmb1Q1SmNhRHQ1dQp6UFdhZFRnUlBrSmk2R3VxWUpoRElCakFsckdFOE4rb21Yc0g5c1BINCtteDNSTnNjNWRkWng0cgotLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tCg==';
+const key = '';
 
 //This is a lit action that is testing the access control lit action after being outputted from the bundler
 /*const genActionSource = () => {
