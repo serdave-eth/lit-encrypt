@@ -485,7 +485,7 @@ const genSession = async (
 
 const main = async () => {
     let client = new LitNodeClient({
-        litNetwork: 'cayenne',
+        litNetwork: 'datil-dev',
         debug: true
     });
 
@@ -508,14 +508,14 @@ const main = async () => {
 
     const accessControlConditions = [
         {
-          contractAddress: "",
-          standardContractType: "",
-          chain,
-          method: "eth_getBalance",
-          parameters: [":currentActionId", "latest"],
+          contractAddress: '',
+          standardContractType: '',
+          chain: 'ethereum',
+          method: '',
+          parameters: [':currentActionIpfsId'],
           returnValueTest: {
-            comparator: "=",
-            value: 'Qmd3RiHeUTgYDWU57wAEZEFcXvMcHkkJ9qZwxE1y8GoM6H',
+            comparator: '=',
+            value: "QmaCVtmaHjk1tUfhTsKmqWDJGBAQXjwtrN5X81qFuEdP6N",
           },
         },
       ];
@@ -530,7 +530,7 @@ const main = async () => {
     const { ciphertext, dataToEncryptHash } = await encryptString(
         {
             accessControlConditions,
-            dataToEncrypt: "hello world",
+            dataToEncrypt: key,
         },
         client
     );
@@ -606,7 +606,7 @@ const main = async () => {
       const res = await client.executeJs({
         sessionSigs: sessionForDecryption,
         //code: genActionSource(),
-        ipfsId: "Qmd3RiHeUTgYDWU57wAEZEFcXvMcHkkJ9qZwxE1y8GoM6H",
+        ipfsId: "QmaCVtmaHjk1tUfhTsKmqWDJGBAQXjwtrN5X81qFuEdP6N",
         jsParams: {
             accessControlConditions,
             ciphertext,
